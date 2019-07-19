@@ -58,7 +58,7 @@ IEEE 754 标准不仅包括正负有符号数，还包括正负零，正负无�
 略
 
 #### 2.3.3 returnAddress类型和值
-returnAddress用于Java虚拟机的 *jsr*，*ret* 和 *jsr_w* 指令。returnAddress的值为指向Java虚拟机指令操作码的指针。与原是数值类型不同，returnAddress不对应与Java语言任何类型，并且不能在执行程序的时候修改。
+returnAddress用于Java虚拟机的 *jsr*，*ret* 和 *jsr_w* 指令。returnAddress的值为指向Java虚拟机指令操作码的指针。与原始数值类型不同，returnAddress不对应与Java语言任何类型，并且不能在执行程序的时候修改。
 
 #### 2.3.4 布尔值
 尽管Java虚拟机定义了boolean类型，但仅提供了很有限的支持。并没有专用于boolean类型的指令。相反，Java语言对boolean值的操作编译为Java虚拟机int值。
