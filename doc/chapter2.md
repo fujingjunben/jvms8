@@ -214,7 +214,14 @@ Java虚拟机没有对对象内部结构有任何强制要求。
 
 > 该要求在Java SE 7的时候引入。在class文件50.0及以下版本，名为<clinit>并且返回类型为void，没有入参的方法被认为是类或接口初始化方法，无论有没有 ACC_STATIC 标记。
 
-<clinit> 由编译器提供。
+<clinit> 由编译器提供。因为<clinit>不是一个合法的标识符，不能在Java程序中直接使用。类和接口实例方法被Java虚拟机隐式调用；永远不会由Java虚拟机指令直接调用，只能作为类实例过程的一部分间接调用。
 
+当一个方法有下面所有特性时，就认为是 *signature polymorphic* （签名多态）：
+* 在类 *java.lang.invoke.MethodHandle* 中声明。
+* 只有一个Object[]型的的形参。
+* 返回类型为Object。
+* 设置了 ACC_VARARGS 和 ACC_NATIVE flag
 
+> 在Java SE 8，唯一的 signature polymorphic 方法是类 java.lang.invoke.MethodHandle的 invoke 和 invokeExact 方法。
 
+Java虚拟机在 *invokevirtual* 指令给予了signature polymorphic 方法特殊待遇，为了影响 *method handle* 的调用。method handle 是强类型，底层方法、构造函数、属性及类似底层操作的直接的可执行的引用，还包括可选的参数或返回值的转换。这类转换相当广泛，包括转化、插入、删除和代替等模式。参考 Java SE java.lang.invoke 包
